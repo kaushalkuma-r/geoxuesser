@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>GeoGuessr Lite</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: sans-serif;
+      }
+
+      #landing {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+
+      #game {
+        display: none;
+      }
+
+      #street-view {
+        height: 100vh;
+        width: 100%;
+      }
+
+      #map-container {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        z-index: 999;
+      }
+
+      #mini-map {
+        width: 200px;
+        height: 120px;
+        border: 2px solid #333;
+        cursor: pointer;
+        transition: width 0.3s ease, height 0.3s ease;
+      }
+
+      #mini-map.expanded {
+        width: 600px;
+        height: 400px;
+        cursor: crosshair;
+      }
+
+      #guess-button {
+        margin-top: 10px;
+        padding: 10px 15px;
+        font-size: 14px;
+        display: none;
+        width: 100%;
+      }
+
+      #scoreboard {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: white;
+        padding: 10px;
+        border: 1px solid #999;
+        z-index: 999;
+      }
+
+      #final-result {
+        display: none;
+        text-align: center;
+        padding: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="landing">
+      <h2>Select number of rounds:</h2>
+      <input type="number" id="round-input" value="5" min="1" max="20" />
+      <button id="start-game">Start Game</button>
+    </div>
+
+    <div id="game">
+      <div id="street-view"></div>
+      <div id="scoreboard">
+        <div>Round: <span id="round-num">0</span></div>
+        <div>Score: <span id="score">0</span></div>
+      </div>
+      <div id="map-container">
+        <div id="mini-map"></div>
+        <button id="guess-button">Make Guess</button>
+      </div>
+    </div>
+
+    <div id="final-result">
+      <h2>Game Over!</h2>
+      <p>Total Score: <span id="final-score"></span></p>
+      <button id="restart-button">Play Again</button>
+    </div>
+    
+
+    <script src="streetview-game.js"></script>
+    <script>
+      const API_KEY = "AIzaSyDVFZNnEEFOwZjg3irvQcAVvYAIks6pgjQ";
+      const script = document.createElement("script");
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${API_KEY}&callback=initGame`;
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    </script>
+  </body>
+</html>
