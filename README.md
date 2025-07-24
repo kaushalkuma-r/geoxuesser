@@ -55,11 +55,6 @@ python3 -m http.server
 
 Then visit: [http://localhost:8000](http://localhost:8000)
 
-## 📸 Screenshots
-
-| Landing Page                        | Game Interface                |
-| ----------------------------------- | ----------------------------- |
-| ![Landing](screenshots/landing.png) | ![Game](screenshots/game.png) |
 
 ## 📄 License
 
